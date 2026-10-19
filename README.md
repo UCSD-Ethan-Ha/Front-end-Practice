@@ -40,9 +40,40 @@ are relative to the day you seed, so the number of overdue cases stays realistic
 | `alice@example.com` | Alice Nguyen | `password123` |
 | `ben@example.com` | Ben Okafor | `password123` |
 
+## Run
+
+```sh
+npm run dev
+```
+
+The API listens on `http://localhost:3000` (override with `PORT`) and restarts when files change.
+CORS allows `http://localhost:5173`, the Vite dev server.
+
+To run the compiled build instead:
+
+```sh
+npm run build
+npm start
+```
+
+Every `GET` accepts `?delay=<ms>` (capped at 10 s) and `?fail=1` (forces a `500`) for building
+loading and error states. Both are disabled when `NODE_ENV=production`.
+
+## Routes
+
+| Method | Path | Auth | Success |
+|---|---|---|---|
+| GET | `/api/health` | no | 200 |
+
+Full details, with example requests, responses, status codes and curl commands, are in
+[`docs/api-spec.md`](docs/api-spec.md).
+
 ## Scripts
 
 | Script | What it does |
 |---|---|
+| `npm run dev` | Start the API with auto-restart on file changes |
+| `npm run build` | Compile TypeScript to `dist/` |
+| `npm start` | Run the compiled build |
 | `npm run seed` | Reset the database and load seed data |
 | `npm run typecheck` | Type-check the project without emitting files |
